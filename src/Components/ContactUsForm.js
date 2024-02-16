@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
 
-function AppointmentForm() {
+function ContactUSForm() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
@@ -12,13 +12,12 @@ function AppointmentForm() {
   const [patientNumber, setPatientNumber] = useState("");
   const [patientGender, setPatientGender] = useState("default");
   const [appointmentTime, setAppointmentTime] = useState("");
-  const [preferredMode, setPreferredMode] = useState("default");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    debugger;
     // Validate form inputs
     const errors = {};
     if (!patientName.trim()) {
@@ -45,9 +44,6 @@ function AppointmentForm() {
         errors.appointmentTime = "Please select a future appointment time";
       }
     }
-    if (preferredMode === "default") {
-      errors.preferredMode = "Please select preferred mode";
-    }
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
@@ -59,7 +55,6 @@ function AppointmentForm() {
     setPatientNumber("");
     setPatientGender("default");
     setAppointmentTime("");
-    setPreferredMode("default");
     setFormErrors({});
 
     toast.success("Appointment Scheduled !", {
@@ -79,7 +74,7 @@ function AppointmentForm() {
 
       <div className="form-container">
         <h2 className="form-title">
-          <span>Book Appointment Online</span>
+          <span>Book Appointment Call</span>
         </h2>
 
         <form className="form-content" onSubmit={handleSubmit}>
@@ -117,14 +112,15 @@ function AppointmentForm() {
               <option value="default">Select</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
-              <option value="private">I will inform Doctor only</option>
+              <option value="other">Other</option>
+              <option value="private">Prefer Not To Say</option>
             </select>
             {formErrors.patientGender && <p className="error-message">{formErrors.patientGender}</p>}
           </label>
 
           <br />
           <label>
-            Preferred Appointment Time:
+            Preferred Appointment Call Time:
             <input
               type="datetime-local"
               value={appointmentTime}
@@ -135,31 +131,16 @@ function AppointmentForm() {
           </label>
 
           <br />
-          <label>
-            Preferred Mode:
-            <select
-              value={preferredMode}
-              onChange={(e) => setPreferredMode(e.target.value)}
-              required
-            >
-              <option value="default">Select</option>
-              <option value="voice">Voice Call</option>
-              <option value="video">Video Call</option>
-            </select>
-            {formErrors.preferredMode && <p className="error-message">{formErrors.preferredMode}</p>}
-          </label>
-
-          <br />
           <button type="submit" className="text-appointment-btn">
-            Confirm Appointment
+            Confirm Appointment Call
           </button>
 
-          <p className="success-message" style={{display: isSubmitted ? "block" : "none"}}>Appointment details has been sent to the patients phone number via SMS.</p>
+          <p className="success-message" style={{ display: isSubmitted ? "block" : "none" }}>Details has been successfully sent.</p>
         </form>
       </div>
 
       <div className="legal-footer">
-        <p>© 2013-2023 Health+. All rights reserved.</p>
+        <p>© 2013-2023 Mindfullness. All rights reserved.</p>
       </div>
 
       <ToastContainer autoClose={5000} limit={1} closeButton={false} />
@@ -167,4 +148,4 @@ function AppointmentForm() {
   );
 }
 
-export default AppointmentForm;
+export default ContactUSForm;
