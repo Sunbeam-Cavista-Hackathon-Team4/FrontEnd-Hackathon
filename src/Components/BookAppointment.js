@@ -5,7 +5,7 @@ import {
   faCircleCheck,
   faCalendarCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Styles/BookAppointment.css";
 
 function BookAppointment() {
