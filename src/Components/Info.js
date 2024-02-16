@@ -1,6 +1,6 @@
 import React from "react";
 import InformationCard from "./InformationCard";
-import { faHeartPulse, faTruckMedical, faTooth } from "@fortawesome/free-solid-svg-icons";
+import { faBrain, faPeopleGroup, faPerson } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Info.css";
 
 function Info() {
@@ -21,32 +21,27 @@ function Info() {
 
       <div className="info-cards-content">
         <InformationCard
-          title="Emergency Care"
-          description="Our Emergency Care service is designed to be your reliable support
-            in critical situations. Whether it's a sudden illness, injury, or
-            any medical concern that requires immediate attention, our team of
-            dedicated healthcare professionals is available 24/7 to provide
-            prompt and efficient care."
-          icon={faTruckMedical}
+          title="Anxiety Treatments"
+          description="Anxiety is a feeling of fear, dread, and uneasiness. 
+          It might cause you to sweat, feel restless and tense, and have a rapid heartbeat. 
+          It can be a normal reaction to stress. For example, you might feel anxious when faced with a 
+          difficult problem at work, before taking a test, or before making an important decision. 
+          For people with anxiety disorders, the fear is not temporary and can be overwhelming."
+          icon={faBrain}
         />
 
         <InformationCard
-          title="Heart Disease"
-          description="Our team of experienced cardiologists and medical experts use
-            state-of-the-art technology to assess your cardiovascular health and
-            design personalized treatment plans. From comprehensive screenings
-            to advanced interventions, we are committed to helping you maintain
-            a healthy heart and lead a fulfilling life."
-          icon={faHeartPulse}
+          title="Bi-Polar"
+          description="Bipolar disorder, formerly referred to as manic depressive illness, 
+          is a mood disorder with extremes.When manic, a person becomes overly elated, more irritable, requires less sleep, 
+          makes grand plans and may impulsively engage in potentially dangerous behaviour.."
+          icon={faPeopleGroup}
         />
 
         <InformationCard
-          title="Dental Care"
-          description="Smile with confidence as our Dental Care services cater to all your
-            oral health needs. Our skilled dentists provide a wide range of
-            treatments, from routine check-ups and cleanings to cosmetic
-            procedures and restorative treatments."
-          icon={faTooth}
+          title="Depression"
+          description="Depression is a constant feeling of sadness and loss of interest, which stops you doing your normal activities. Different types of depression exist, with symptoms ranging from relatively m.inor to severe. Generally, depression does not result from a single event, but from a mix of events and factors."
+          icon={faPerson}
         />
       </div>
     </div>
