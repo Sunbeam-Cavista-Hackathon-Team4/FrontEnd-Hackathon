@@ -1,0 +1,55 @@
+.infoCard{
+
+        width: 332px;
+        height: 400px;
+        gap: 32px;
+        text-align: left;
+        font-family: 'Rubik', sans-serif;
+}
+
+.card-content{
+
+    color: black;    
+    height: 1vmax ;
+    justify-content: left;
+}
+
+.fetch-content{
+
+    color:blue;
+    height:1vmax;
+    justify-content: left;
+}
+
+#delete{
+    background-color: aquamarine;
+    color: black;
+}
+
+#delete:hover{
+    background-color: black;
+    color:aquamarine;
+}
+
+#edit{
+    background-color: orange;
+    color: black;
+    
+}
+
+#edit:hover{
+    background-color: orange;
+    color:red;
+}
+
+
+.infoCard:hover{
+
+    width: 380px;
+    height: 450px;
+    gap: 32px;
+    text-align: left;
+    font-family: 'Rubik', sans-serif;
+
+
+}
