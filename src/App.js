@@ -6,6 +6,8 @@ import Legal from "./Pages/Legal";
 import NotFound from "./Pages/NotFound";
 import Appointment from "./Pages/Appointment";
 import Patient from "./Pages/Patient";
+import DoctorRegister from "./Components/DoctorRegister";
+import Login from "./Pages/Login";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/legal" element={<Legal />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/patient" element={<Patient />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/doctor/add" element={<DoctorRegister />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

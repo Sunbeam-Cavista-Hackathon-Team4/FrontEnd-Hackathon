@@ -58,9 +58,16 @@ function Navbar() {
           </a>
         </li>
         <li>
-          <a href="../Pages/login.js" className="navbar-links" id="login">
-            SignIn
-          </a>
+          <Link to="../login" className="navbar-links">
+            Signin
+          </Link>
+        </li>
+        <li>
+          <li>
+            <Link to="../doctor/add" className="navbar-links">
+              Doctor Signup
+            </Link>
+          </li>
         </li>
       </ul>
 

@@ -56,12 +56,7 @@ function Footer() {
       </div>
 
       <div className="ft-copyright">
-<<<<<<< HEAD
-        <p>© 2013-2023 Mindfullness+. All rights reserved.</p>
-=======
-        <p>© 2024 mindfullness. All rights reserved.</p>
->>>>>>> 4632cd6a2fed161b0c7589683e64b22dcc5e0fab
-
+        <p>© 2023 Mindfullness. All rights reserved.</p>
         <ul className="ft-social-links">
           <li>
             <a

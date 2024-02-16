@@ -4,31 +4,44 @@ import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
-function DoctorForm() {
+function DoctorRegister() {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
-    const url = "https://172.18.4.152:8443/doctor/register";
+    const url = "https://172.18.4.138:8443/doctor/add";
     const [doctorFirstName, setDoctorFirstName] = useState("");
     const [doctorLastName, setDoctorLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [qualification, setQualification] = useState("");
+    const [gender, setGender] = useState("");
     const [doctorNumber, setDoctorNumber] = useState("");
-    const [appointmentTime, setAppointmentTime] = useState("");
+    const [joinDate, setJoinDate] = useState("");
+    const [password, setPassword] = useState("");
+    const [availability, setAvailability] = useState("");
+    const [dob, setDob] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [formErrors, setFormErrors] = useState({});
 
-    dob gender qaulification join date user + pass
+
 
 
 
     var registerDoctor = async () => {
         let data = {
-            first_name: doctorFirstName,
-            last_name: doctorLastName,
-            mobileNo: doctorNumber,
-            email: email,
-            appointmentTime: appointmentTime,
-            role: "ROLE_DOCTOR"
+            dob: dob,
+            gender: gender,
+            qualification: qualification,
+            joinDate: joinDate,
+            availability: availability,
+            user: {
+                firstName: doctorFirstName,
+                lastName: doctorLastName,
+                email: email,
+                password: password,
+                mobileNo: doctorNumber,
+                role: "ROLE_DOCTOR",
+                gender: gender
+            },
         }
         console.log(data);
         axios.post(url, data).then((response) => {
@@ -55,7 +68,7 @@ function DoctorForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        debugger;
+
         // Validate form inputs
         const errors = {};
         if (!doctorFirstName.trim()) {
@@ -77,16 +90,6 @@ function DoctorForm() {
         }
 
 
-        if (!appointmentTime) {
-            errors.appointmentTime = "Appointment time is required";
-        } else {
-            const selectedTime = new Date(appointmentTime).getTime();
-            const currentTime = new Date().getTime();
-            if (selectedTime <= currentTime) {
-                errors.appointmentTime = "Please select a future appointment time";
-            }
-        }
-
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
             return;
@@ -96,8 +99,13 @@ function DoctorForm() {
         setDoctorFirstName("");
         setDoctorLastName("");
         setEmail("");
+        setAvailability("");
+        setQualification("");
+        setDob("");
+        setGender("");
         setDoctorNumber("");
-        setAppointmentTime("");
+        setPassword("");
+        setJoinDate("");
         setFormErrors({});
 
         // axios call
@@ -109,13 +117,13 @@ function DoctorForm() {
         <div className="appointment-form-section">
             <h1 className="legal-siteTitle">
                 <Link to="/">
-                    Health <span className="legal-siteSign">+</span>
+                    Mindfullness <span className="legal-siteSign">+</span>
                 </Link>
             </h1>
 
             <div className="form-container">
                 <h2 className="form-title">
-                    <span>Book Appointment Call</span>
+                    <span>Register Doctor</span>
                 </h2>
 
                 <form className="form-content" onSubmit={handleSubmit}>
@@ -135,7 +143,7 @@ function DoctorForm() {
                         Last Name:
                         <input
                             type="text"
-                            value={DoctorLastName}
+                            value={doctorLastName}
                             onChange={(e) => setDoctorLastName(e.target.value)}
                             required
                         />
@@ -154,6 +162,28 @@ function DoctorForm() {
                         {formErrors.email && <p className="error-message">{formErrors.email}</p>}
                     </label>
 
+                    <label>
+                        Password:
+                        <input
+                            type="text"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        {formErrors.password && <p className="error-message">{formErrors.password}</p>}
+                    </label>
+
+                    <label>
+                        Qualifiction:
+                        <input
+                            type="text"
+                            value={qualification}
+                            onChange={(e) => setQualification(e.target.value)}
+                            required
+                        />
+                        {formErrors.qualification && <p className="error-message">{formErrors.qualification}</p>}
+                    </label>
+
                     <br />
                     <label>
                         Phone Number:
@@ -168,19 +198,62 @@ function DoctorForm() {
 
                     <br />
                     <label>
-                        Preferred Appointment Call Time:
+                        Gender:
+                        <select
+                            value={gender}
+                            onChange={(e) => setGender(e.target.value)}
+                            required
+                        >
+                            <option value="default">Select</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                        {formErrors.gender && <p className="error-message">{formErrors.gender}</p>}
+                    </label>
+
+                    <br />
+                    <label>
+                        Joining Date:
                         <input
-                            type="datetime-local"
-                            value={appointmentTime}
-                            onChange={(e) => setAppointmentTime(e.target.value)}
+                            type="date"
+                            value={joinDate}
+                            onChange={(e) => setJoinDate(e.target.value)}
                             required
                         />
-                        {formErrors.appointmentTime && <p className="error-message">{formErrors.appointmentTime}</p>}
+                        {formErrors.joinDate && <p className="error-message">{formErrors.joinDate}</p>}
+                    </label>
+
+                    <br />
+                    <label>
+                        Date of Birth:
+                        <input
+                            type="date"
+                            value={dob}
+                            onChange={(e) => setDob(e.target.value)}
+                            required
+                        />
+                        {formErrors.dob && <p className="error-message">{formErrors.dob}</p>}
+                    </label>
+
+                    <br />
+                    <label>
+                        Availability:
+                        <select
+                            value={availability}
+                            onChange={(e) => setAvailability(e.target.value)}
+                            required
+                        >
+                            <option value="default">Select</option>
+                            <option value="AVAILABLE">AVAILABLE</option>
+                            <option value="NOTAVAILABLE">NOTAVAILABLE</option>
+                        </select>
+                        {formErrors.availability && <p className="error-message">{formErrors.availability}</p>}
                     </label>
 
                     <br />
                     <button type="submit" className="text-appointment-btn">
-                        Confirm Appointment Call
+                        Register
                     </button>
 
                     <p className="success-message" style={{ display: isSubmitted ? "block" : "none" }}>Details has been successfully sent.</p>
@@ -196,4 +269,4 @@ function DoctorForm() {
     );
 }
 
-export default DoctorForm;
+export default DoctorRegister;
