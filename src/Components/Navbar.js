@@ -58,16 +58,12 @@ function Navbar() {
           </a>
         </li>
         <li>
-          <Link to="../login" className="navbar-links">
-            Signin
+          <Link to="../login" className="navbar-links"> Sign In
           </Link>
         </li>
         <li>
-          <li>
-            <Link to="../doctor/add" className="navbar-links">
-              Doctor Signup
-            </Link>
-          </li>
+          <Link to="../doctor/add" className="navbar-links"> Doctor SignUp
+          </Link>
         </li>
       </ul>
 
