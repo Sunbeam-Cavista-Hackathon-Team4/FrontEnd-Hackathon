@@ -7,7 +7,6 @@ import BookAppointment from "../Components/BookAppointment";
 import Reviews from "../Components/Reviews";
 import Doctors from "../Components/Doctors";
 import Footer from "../Components/Footer";
-// import ContactUs from "../Components/ContactUs";
 
 function Home() {
   return (
@@ -17,7 +16,6 @@ function Home() {
       <Info />
       <About />
       <BookAppointment />
-      {/* <ContactUs /> */}
       <Reviews />
       <Doctors />
       <Footer />

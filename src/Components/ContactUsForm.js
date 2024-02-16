@@ -2,28 +2,78 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 function ContactUSForm() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-
-  const [patientName, setPatientName] = useState("");
+  const url = "https://localhost:8443/patient/register";
+  const [patientFirstName, setPatientFirstName] = useState("");
+  const [patientLastName, setPatientLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [patientNumber, setPatientNumber] = useState("");
-  const [patientGender, setPatientGender] = useState("default");
   const [appointmentTime, setAppointmentTime] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+
+
+
+  var registerPatient = async () => {
+    let data = {
+      first_name: patientFirstName,
+      last_name: patientLastName,
+      mobileNo: patientNumber,
+      email: email,
+      appointmentTime: appointmentTime,
+      role: "ROLE_PATIENT"
+    }
+    console.log(data);
+    axios.post(url, data).then((response) => {
+
+      sessionStorage.setItem("jwt", response.jwt);
+
+      toast.success("Appointment Scheduled !", {
+        position: toast.POSITION.TOP_CENTER,
+        onOpen: () => setIsSubmitted(true),
+        onClose: () => setIsSubmitted(false),
+      });
+    })
+      .catch((error) => {
+        toast.error("Failed to Schedule Appointment :(", {
+          position: toast.POSITION.TOP_CENTER,
+          onOpen: () => setIsSubmitted(false),
+          onClose: () => setIsSubmitted(true),
+        });
+      })
+
+
+
+
+
+    // toast.success("Appointment Scheduled !", {
+    //   position: toast.POSITION.TOP_CENTER,
+    //   onOpen: () => setIsSubmitted(true),
+    //   onClose: () => setIsSubmitted(false),
+    // });
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     debugger;
     // Validate form inputs
     const errors = {};
-    if (!patientName.trim()) {
-      errors.patientName = "Patient name is required";
-    } else if (patientName.trim().length < 8) {
-      errors.patientName = "Patient name must be at least 8 characters";
+    if (!patientFirstName.trim()) {
+      errors.patientFirstName = "Patient name is required";
+    } else if (patientFirstName.trim().length < 8) {
+      errors.patientFirstName = "Patient name must be at least 8 characters";
+    }
+
+    if (!patientLastName.trim()) {
+      errors.patientLastName = "Patient name is required";
+    } else if (patientLastName.trim().length < 8) {
+      errors.patientLastName = "Patient name must be at least 8 characters";
     }
 
     if (!patientNumber.trim()) {
@@ -32,9 +82,13 @@ function ContactUSForm() {
       errors.patientNumber = "Patient phone number must be of 10 digits";
     }
 
-    if (patientGender === "default") {
-      errors.patientGender = "Please select patient gender";
+    if (!email.trim()) {
+      errors.email = "Patient email is required";
+    } else if (email.trim().length < 8) {
+      errors.email = "Patient email must be of 10 characters";
     }
+
+
     if (!appointmentTime) {
       errors.appointmentTime = "Appointment time is required";
     } else {
@@ -51,17 +105,16 @@ function ContactUSForm() {
     }
 
     // Reset form fields and errors after successful submission
-    setPatientName("");
+    setPatientFirstName("");
+    setPatientLastName("");
+    setEmail("");
     setPatientNumber("");
-    setPatientGender("default");
     setAppointmentTime("");
     setFormErrors({});
 
-    toast.success("Appointment Scheduled !", {
-      position: toast.POSITION.TOP_CENTER,
-      onOpen: () => setIsSubmitted(true),
-      onClose: () => setIsSubmitted(false),
-    });
+    // axios call
+    registerPatient();
+
   };
 
   return (
@@ -79,19 +132,43 @@ function ContactUSForm() {
 
         <form className="form-content" onSubmit={handleSubmit}>
           <label>
-            Patient Full Name:
+            First Name:
             <input
               type="text"
-              value={patientName}
-              onChange={(e) => setPatientName(e.target.value)}
+              value={patientFirstName}
+              onChange={(e) => setPatientFirstName(e.target.value)}
               required
             />
-            {formErrors.patientName && <p className="error-message">{formErrors.patientName}</p>}
+            {formErrors.patientFirstName && <p className="error-message">{formErrors.patientFirstName}</p>}
           </label>
 
           <br />
           <label>
-            Patient Phone Number:
+            Last Name:
+            <input
+              type="text"
+              value={patientLastName}
+              onChange={(e) => setPatientLastName(e.target.value)}
+              required
+            />
+            {formErrors.patientLastName && <p className="error-message">{formErrors.patientLastName}</p>}
+          </label>
+
+          <br />
+          <label>
+            Email:
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            {formErrors.email && <p className="error-message">{formErrors.email}</p>}
+          </label>
+
+          <br />
+          <label>
+            Phone Number:
             <input
               type="text"
               value={patientNumber}
@@ -99,23 +176,6 @@ function ContactUSForm() {
               required
             />
             {formErrors.patientNumber && <p className="error-message">{formErrors.patientNumber}</p>}
-          </label>
-
-          <br />
-          <label>
-            Patient Gender:
-            <select
-              value={patientGender}
-              onChange={(e) => setPatientGender(e.target.value)}
-              required
-            >
-              <option value="default">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-              <option value="private">Prefer Not To Say</option>
-            </select>
-            {formErrors.patientGender && <p className="error-message">{formErrors.patientGender}</p>}
           </label>
 
           <br />
