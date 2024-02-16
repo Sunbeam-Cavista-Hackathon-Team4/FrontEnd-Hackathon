@@ -37,6 +37,11 @@
     font-size: 18px;
     letter-spacing: .8px;
 }
+.navbar-links#login{
+
+    padding: 50px;
+    
+}
 .navbar-links:hover {
     color: #0cc2ea;
 }
