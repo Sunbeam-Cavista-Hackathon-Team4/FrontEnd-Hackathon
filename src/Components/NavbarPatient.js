@@ -9,7 +9,7 @@ import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function Navbar() {
+function NavbarPatient() {
   const [nav, setNav] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -125,4 +125,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarPatient;

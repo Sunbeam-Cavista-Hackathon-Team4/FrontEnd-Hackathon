@@ -11,7 +11,7 @@ function LegalDocs() {
     <div className="legal-section-title">
       <h1 className="legal-siteTitle">
         <Link to="/">
-          Health <span className="legal-siteSign">+</span>
+          Mindfullness <span className="legal-siteSign">+</span>
         </Link>
       </h1>
 
@@ -62,7 +62,7 @@ function LegalDocs() {
       </div>
 
       <div className="legal-footer">
-        <p>© 2013-2023 Health+. All rights reserved.</p>
+        <p>© 2013-2023 Mindfullness+. All rights reserved.</p>
       </div>
     </div>
   );

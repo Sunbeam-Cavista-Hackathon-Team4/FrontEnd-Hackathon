@@ -8,11 +8,12 @@ function ContactUSForm() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-  const url = "https://localhost:8443/patient/register";
+  const url = "https://172.18.4.152:8443/unregistered_user/book_appointment";
   const [patientFirstName, setPatientFirstName] = useState("");
   const [patientLastName, setPatientLastName] = useState("");
   const [email, setEmail] = useState("");
   const [patientNumber, setPatientNumber] = useState("");
+  const [appointmentDate, setAppointmentDate] = useState("");
   const [appointmentTime, setAppointmentTime] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState({});
@@ -21,12 +22,12 @@ function ContactUSForm() {
 
   var registerPatient = async () => {
     let data = {
-      first_name: patientFirstName,
-      last_name: patientLastName,
+      firstName: patientFirstName,
+      lastName: patientLastName,
       mobileNo: patientNumber,
       email: email,
-      appointmentTime: appointmentTime,
-      role: "ROLE_PATIENT"
+      time: appointmentTime,
+      date: appointmentDate
     }
     console.log(data);
     axios.post(url, data).then((response) => {
@@ -46,34 +47,20 @@ function ContactUSForm() {
           onClose: () => setIsSubmitted(true),
         });
       })
-
-
-
-
-
-    // toast.success("Appointment Scheduled !", {
-    //   position: toast.POSITION.TOP_CENTER,
-    //   onOpen: () => setIsSubmitted(true),
-    //   onClose: () => setIsSubmitted(false),
-    // });
   }
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    debugger;
+
     // Validate form inputs
     const errors = {};
     if (!patientFirstName.trim()) {
       errors.patientFirstName = "Patient name is required";
-    } else if (patientFirstName.trim().length < 8) {
-      errors.patientFirstName = "Patient name must be at least 8 characters";
     }
 
     if (!patientLastName.trim()) {
       errors.patientLastName = "Patient name is required";
-    } else if (patientLastName.trim().length < 8) {
-      errors.patientLastName = "Patient name must be at least 8 characters";
     }
 
     if (!patientNumber.trim()) {
@@ -84,20 +71,18 @@ function ContactUSForm() {
 
     if (!email.trim()) {
       errors.email = "Patient email is required";
-    } else if (email.trim().length < 8) {
-      errors.email = "Patient email must be of 10 characters";
     }
 
 
-    if (!appointmentTime) {
-      errors.appointmentTime = "Appointment time is required";
-    } else {
-      const selectedTime = new Date(appointmentTime).getTime();
-      const currentTime = new Date().getTime();
-      if (selectedTime <= currentTime) {
-        errors.appointmentTime = "Please select a future appointment time";
-      }
-    }
+    // if (!appointmentTime) {
+    //   errors.appointmentTime = "Appointment time is required";
+    // } else {
+    //   const selectedTime = new Date(appointmentTime).getTime();
+    //   const currentTime = new Date().getTime();
+    //   if (selectedTime <= currentTime) {
+    //     errors.appointmentTime = "Please select a future appointment time";
+    //   }
+    // }
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
@@ -110,6 +95,7 @@ function ContactUSForm() {
     setEmail("");
     setPatientNumber("");
     setAppointmentTime("");
+    setAppointmentDate("");
     setFormErrors({});
 
     // axios call
@@ -121,7 +107,7 @@ function ContactUSForm() {
     <div className="appointment-form-section">
       <h1 className="legal-siteTitle">
         <Link to="/">
-          Health <span className="legal-siteSign">+</span>
+          Mindfullness <span className="legal-siteSign">+</span>
         </Link>
       </h1>
 
@@ -180,9 +166,21 @@ function ContactUSForm() {
 
           <br />
           <label>
-            Preferred Appointment Call Time:
+            Preferred Appointment Date:
             <input
-              type="datetime-local"
+              type="date"
+              value={appointmentDate}
+              onChange={(e) => setAppointmentDate(e.target.value)}
+              required
+            />
+            {formErrors.appointmentDate && <p className="error-message">{formErrors.appointmentDate}</p>}
+          </label>
+
+          <br />
+          <label>
+            Preferred Appointment Time:
+            <input
+              type="time"
               value={appointmentTime}
               onChange={(e) => setAppointmentTime(e.target.value)}
               required
