@@ -58,7 +58,7 @@ function Navbar() {
           </a>
         </li>
         <li>
-          <a href="../Pages/login.js" className="navbar-links" id="login">
+          <a href="Mindfullness/login" className="navbar-links" id="login">
             SignIn
           </a>
         </li>
