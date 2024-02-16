@@ -38,10 +38,13 @@
     letter-spacing: .8px;
 }
 .navbar-links#login{
-
-    padding: 50px;
-    
+    color: black;
+    padding: 100px;
 }
+.navbar-links#login:hover{
+    color:  #1A8EFD;
+}
+
 .navbar-links:hover {
     color: #0cc2ea;
 }
