@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import Navbar from "../Components/Navbar";
 
 function Login() {
     useEffect(() => {
@@ -67,55 +68,53 @@ function Login() {
     };
 
     return (
-        <div className="appointment-form-section">
-            <h1 className="legal-siteTitle">
-                <Link to="/">
-                    Mindfullness <span className="legal-siteSign">+</span>
-                </Link>
-            </h1>
+        <>
+            <Navbar></Navbar>
+            <div className="appointment-form-section">
 
-            <div className="form-container">
-                <h2 className="form-title">
-                    <span>Login</span>
-                </h2>
+                <div className="form-container">
+                    <h2 className="form-title">
+                        <span>Login</span>
+                    </h2>
 
-                <form className="form-content" onSubmit={handleSubmit}>
-                    <br />
-                    <label>
-                        Email:
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                        {formErrors.email && <p className="error-message">{formErrors.email}</p>}
-                    </label>
+                    <form className="form-content" onSubmit={handleSubmit}>
+                        <br />
+                        <label>
+                            Email:
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            {formErrors.email && <p className="error-message">{formErrors.email}</p>}
+                        </label>
 
-                    <br />
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                        {formErrors.patientNumber && <p className="error-message">{formErrors.patientNumber}</p>}
-                    </label>
+                        <br />
+                        <label>
+                            Password:
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            {formErrors.patientNumber && <p className="error-message">{formErrors.patientNumber}</p>}
+                        </label>
 
 
-                    <br />
-                    <button type="submit" className="text-appointment-btn">
-                        Login
-                    </button>
+                        <br />
+                        <button type="submit" className="text-appointment-btn">
+                            Login
+                        </button>
 
-                    <p className="success-message" style={{ display: isSubmitted ? "block" : "none" }}>Details has been successfully sent.</p>
-                </form>
+                        <p className="success-message" style={{ display: isSubmitted ? "block" : "none" }}>Details has been successfully sent.</p>
+                    </form>
+                </div>
+
+                <ToastContainer autoClose={5000} limit={1} closeButton={false} />
             </div>
-
-            <ToastContainer autoClose={5000} limit={1} closeButton={false} />
-        </div>
+        </>
     );
 }
 
