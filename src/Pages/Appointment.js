@@ -3,8 +3,7 @@ import ContactUSForm from "../Components/ContactUsForm";
 import DoctorRegister from "../Components/DoctorRegister";
 
 function Appointment() {
-  // return <ContactUSForm />
-  return <DoctorRegister />
+  return <ContactUSForm />
 }
 
 

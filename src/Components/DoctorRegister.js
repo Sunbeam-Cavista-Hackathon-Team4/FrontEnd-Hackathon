@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function DoctorRegister() {
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
     });
     const url = "https://172.18.4.138:8443/doctor/add";
     const [doctorFirstName, setDoctorFirstName] = useState("");
@@ -115,11 +116,7 @@ function DoctorRegister() {
 
     return (
         <div className="appointment-form-section">
-            <h1 className="legal-siteTitle">
-                <Link to="/">
-                    Mindfullness <span className="legal-siteSign">+</span>
-                </Link>
-            </h1>
+            <Navbar />
 
             <div className="form-container">
                 <h2 className="form-title">
@@ -260,9 +257,7 @@ function DoctorRegister() {
                 </form>
             </div>
 
-            <div className="legal-footer">
-                <p>© 2013-2023 Mindfullness. All rights reserved.</p>
-            </div>
+            <Footer />
 
             <ToastContainer autoClose={5000} limit={1} closeButton={false} />
         </div>

@@ -4,6 +4,7 @@ import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 function Login() {
     useEffect(() => {
@@ -111,7 +112,7 @@ function Login() {
                         <p className="success-message" style={{ display: isSubmitted ? "block" : "none" }}>Details has been successfully sent.</p>
                     </form>
                 </div>
-
+                <Footer />
                 <ToastContainer autoClose={5000} limit={1} closeButton={false} />
             </div>
         </>
