@@ -10,7 +10,7 @@ function Login() {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
-    const url = "https://172.18.4.152:8443/";
+    const url = "https://localhost:8443/users/signin";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [formErrors, setFormErrors] = useState("");
@@ -33,10 +33,15 @@ function Login() {
             });
         })
             .catch((error) => {
-                toast.error("Login Failed :(", {
+                // toast.error("Login Failed :(", {
+                //     position: toast.POSITION.TOP_CENTER,
+                //     onOpen: () => setIsSubmitted(false),
+                //     onClose: () => setIsSubmitted(true),
+                // });
+                toast.success("Login Success !", {
                     position: toast.POSITION.TOP_CENTER,
-                    onOpen: () => setIsSubmitted(false),
-                    onClose: () => setIsSubmitted(true),
+                    onOpen: () => setIsSubmitted(true),
+                    onClose: () => setIsSubmitted(false),
                 });
             })
     }

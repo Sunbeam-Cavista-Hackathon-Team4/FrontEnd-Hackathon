@@ -10,7 +10,7 @@ function ContactUSForm() {
   useEffect(() => {
 
   });
-  const url = "https://172.18.4.152:8443/unregistered_user/book_appointment";
+  const url = "https://localhost:8443/unregistered_user/book_appointment";
   const [patientFirstName, setPatientFirstName] = useState("");
   const [patientLastName, setPatientLastName] = useState("");
   const [email, setEmail] = useState("");

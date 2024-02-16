@@ -9,7 +9,7 @@ import Footer from "./Footer";
 function DoctorRegister() {
     useEffect(() => {
     });
-    const url = "https://172.18.4.138:8443/doctor/add";
+    const url = "https://localhost:8443/doctor/add";
     const [doctorFirstName, setDoctorFirstName] = useState("");
     const [doctorLastName, setDoctorLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -19,6 +19,7 @@ function DoctorRegister() {
     const [joinDate, setJoinDate] = useState("");
     const [password, setPassword] = useState("");
     const [availability, setAvailability] = useState("");
+    const [licenseNo, setLicenseNo] = useState("");
     const [dob, setDob] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [formErrors, setFormErrors] = useState({});
@@ -171,7 +172,7 @@ function DoctorRegister() {
                     </label>
 
                     <label>
-                        Qualifiction:
+                        Qualification:
                         <input
                             type="text"
                             value={qualification}
@@ -179,6 +180,18 @@ function DoctorRegister() {
                             required
                         />
                         {formErrors.qualification && <p className="error-message">{formErrors.qualification}</p>}
+                    </label>
+
+                    <br />
+                    <label>
+                        License No:
+                        <input
+                            type="text"
+                            value={licenseNo}
+                            onChange={(e) => setLicenseNo(e.target.value)}
+                            required
+                        />
+                        {formErrors.licenseNo && <p className="error-message">{formErrors.licenseNo}</p>}
                     </label>
 
                     <br />
